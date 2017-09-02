@@ -1,0 +1,13 @@
+- hosts: all
+  connection: paramiko
+  become: yes
+  gather_facts: true
+
+  pre_tasks:
+     - yum:
+        name: "{{ item }}"
+        state: installed
+       with_items:
+        - nginx
+        - mysql
+       ignore_errors: True
